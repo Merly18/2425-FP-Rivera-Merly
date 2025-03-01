@@ -1,35 +1,26 @@
-def ordenar_fila_quick_sort(fila):
-    if len(fila) <= 1:
-        return fila
-    else:
-        pivote = fila[len(fila) // 2]
-        menores = [x for x in fila if x < pivote]
-        iguales = [x for x in fila if x == pivote]
-        mayores = [x for x in fila if x > pivote]
-        return ordenar_fila_quick_sort(menores) + iguales + ordenar_fila_quick_sort(mayores)
+def buscar_valor(matriz, valor):
+    for i in range(len(matriz)):
+        for j in range(len(matriz[i])):
+            if matriz[i][j] == valor:
+                return i, j  # Devuelve la posición si se encuentra
+    return None  # Retorna None si no se encuentra
 
-# Definir una matriz 3x3
+# Definimos una matriz 3x3
 matriz = [
     [4, 2, 3],
     [2, 9, 7],
     [7, 3, 9]
 ]
 
-# Mostrar matriz original
-print("Matriz original:")
-for fila in matriz:
-    print(fila)
+# Valor a buscar
+valor_buscar = int(input("Ingrese el valor a buscar: "))
 
-# Seleccionar la fila a ordenar
-fila_a_ordenar = int(input("Ingrese el número de la fila a ordenar (0-2): "))
+# Realizamos la búsqueda
+posicion = buscar_valor(matriz, valor_buscar)
 
-# Ordenar la fila seleccionada
-if 0 <= fila_a_ordenar < len(matriz):
-    matriz[fila_a_ordenar] = ordenar_fila_quick_sort(matriz[fila_a_ordenar])
+# Mostramos el resultado
+if posicion:
+    print(f"El valor {valor_buscar} se encontró en la posición {posicion}.")
 else:
-    print("Fila no válida.")
+    print(f"El valor {valor_buscar} no se encontró en la matriz.")
 
-# Mostrar matriz con la fila ordenada
-print("\nMatriz con la fila ordenada:")
-for fila in matriz:
-    print(fila)

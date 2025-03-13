@@ -8,9 +8,9 @@ def bubble_sort(lista):  # La función recibe una lista como parámetro
 
 # Definimos una matriz 3x3 con valores numéricos
 matriz = [
-    [5, 8, 2],  # Fila 0
-    [3, 7, 6],  # Fila 1
-    [9, 1, 4]   # Fila 2
+    [7, 8, 2],  # Fila 0
+    [3, 7, 8],  # Fila 1
+    [9, 2, 4]   # Fila 2
 ]
 
 # Mostramos la matriz original antes de ordenar

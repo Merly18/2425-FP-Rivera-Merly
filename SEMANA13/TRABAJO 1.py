@@ -1,48 +1,37 @@
-def calcular_temperatura_promedio(datos_temperatura):
+def calcular_temperatura_promedio(datos_temperaturas):
     """
-    Calcula la temperatura promedio de cada ciudad en el período de tiempo dado.
-    :param datos_temperatura: Diccionario con los datos de temperatura por ciudad y semanas.
+    Calcula la temperatura promedio de cada ciudad.
+    :param datos_temperaturas: Diccionario con ciudades como claves y listas de temperaturas semanales como valores.
     :return: Diccionario con la temperatura promedio de cada ciudad.
     """
     promedios = {}
-
-    for ciudad, semanas in datos_temperatura.items():
-        total_temperaturas = sum(sum(semana) for semana in semanas)
-        total_dias = sum(len(semana) for semana in semanas)
-        promedios[ciudad] = total_temperaturas / total_dias if total_dias > 0 else 0
-
+    for ciudad, temperaturas in datos_temperaturas.items():
+        total_temperaturas = sum(temperaturas)
+        cantidad_datos = len(temperaturas)
+        promedio = total_temperaturas / cantidad_datos if cantidad_datos > 0 else 0
+        promedios[ciudad] = round(promedio, 2)
     return promedios
 
-
-# Datos de temperatura para 3 ciudades (Macas, Cuenca y Quito) durante 4 semanas
-# Cada sublista representa una semana con temperaturas diarias
-
-datos_temperatura = {
-    "Macas": [
-        [22, 24, 23, 25, 26, 24, 23],
-        [21, 23, 22, 24, 25, 23, 22],
-        [20, 22, 21, 23, 24, 22, 21],
-        [19, 21, 20, 22, 23, 21, 20]
-    ],
-
-    "Cuenca": [
-        [15, 17, 16, 18, 19, 17, 16],
-        [14, 16, 15, 17, 18, 16, 15],
-        [13, 15, 14, 16, 17, 15, 14],
-        [12, 14, 13, 15, 16, 14, 13]
-    ],
-
-    "Quito": [
-        [18, 20, 19, 21, 22, 20, 19],
-        [17, 19, 18, 20, 21, 19, 18],
-        [16, 18, 17, 19, 20, 18, 17],
-        [15, 17, 16, 18, 19, 17, 16]
-    ]
+# Datos de temperaturas (simulados para 4 semanas)
+datos_temperaturas = {
+    "Macas": [22.5, 23.1, 21.8, 22.9, 23.5, 22.7, 21.9,
+               22.8, 23.0, 21.7, 22.5, 23.3, 22.6, 22.0,
+               23.2, 22.9, 21.5, 22.6, 23.4, 22.3, 22.1,
+               22.7, 23.1, 21.8, 22.9, 23.2, 22.5, 21.9],
+    "Cuenca": [18.5, 19.1, 17.8, 18.9, 19.5, 18.7, 17.9,
+                18.8, 19.0, 17.7, 18.5, 19.3, 18.6, 18.0,
+                19.2, 18.9, 17.5, 18.6, 19.4, 18.3, 18.1,
+                18.7, 19.1, 17.8, 18.9, 19.2, 18.5, 17.9],
+    "Quito": [15.5, 16.1, 14.8, 15.9, 16.5, 15.7, 14.9,
+               15.8, 16.0, 14.7, 15.5, 16.3, 15.6, 15.0,
+               16.2, 15.9, 14.5, 15.6, 16.4, 15.3, 15.1,
+               15.7, 16.1, 14.8, 15.9, 16.2, 15.5, 14.9]
 }
 
-# Calcular temperaturas promedio
-promedios = calcular_temperatura_promedio(datos_temperatura)
+# Calcular temperatura promedio por ciudad
+promedios = calcular_temperatura_promedio(datos_temperaturas)
 
 # Mostrar resultados
 for ciudad, promedio in promedios.items():
-    print(f"Temperatura promedio en {ciudad}: {promedio:.2f}°C")
+    print(f"Temperatura promedio en {ciudad}: {promedio}°C")
+
